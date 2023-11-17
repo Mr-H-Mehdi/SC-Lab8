@@ -1,6 +1,3 @@
-/* Copyright (c) 2015-2016 MIT 6.005 course staff, all rights reserved.
- * Redistribution of original or derived work requires permission of course staff.
- */
 package graph;
 
 import java.util.Map;
@@ -26,7 +23,7 @@ public interface Graph<L> {
      * @return a new empty weighted directed graph
      */
     public static <L> Graph<L> empty() {
-        throw new RuntimeException("not implemented");
+       return new ConcreteEdgesGraph<>();
     }
     
     /**
@@ -36,7 +33,7 @@ public interface Graph<L> {
      * @return true if this graph did not already include a vertex with the
      *         given label; otherwise false (and this graph is not modified)
      */
-    public boolean add(L vertex);
+    public boolean add(L newVertex);
     
     /**
      * Add, change, or remove a weighted directed edge in this graph.
@@ -52,7 +49,7 @@ public interface Graph<L> {
      * @return the previous weight of the edge, or zero if there was no such
      *         edge
      */
-    public int set(L source, L target, int weight);
+    public int set(L sourceVertex, L targetVertex, int edgeWeight);
     
     /**
      * Remove a vertex from this graph; any edges to or from the vertex are
@@ -62,7 +59,7 @@ public interface Graph<L> {
      * @return true if this graph included a vertex with the given label;
      *         otherwise false (and this graph is not modified)
      */
-    public boolean remove(L vertex);
+    public boolean remove(L vertexToRemove);
     
     /**
      * Get all the vertices in this graph.
@@ -81,7 +78,7 @@ public interface Graph<L> {
      *         the value for each key is the (nonzero) weight of the edge from
      *         the key to target
      */
-    public Map<L, Integer> sources(L target);
+    public Map<L, Integer> sources(L targetVertex);
     
     /**
      * Get the target vertices with directed edges from a source vertex and the
@@ -93,6 +90,6 @@ public interface Graph<L> {
      *         the value for each key is the (nonzero) weight of the edge from
      *         source to the key
      */
-    public Map<L, Integer> targets(L source);
+    public Map<L, Integer> targets(L sourceVertex);
     
 }
