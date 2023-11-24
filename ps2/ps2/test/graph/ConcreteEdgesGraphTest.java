@@ -15,8 +15,6 @@ import org.junit.Test;
  * 
  * Tests against the Graph spec should be in GraphInstanceTest.
  */
-
-
 public class ConcreteEdgesGraphTest extends GraphInstanceTest {
 
     @Override
@@ -24,9 +22,14 @@ public class ConcreteEdgesGraphTest extends GraphInstanceTest {
         return new ConcreteEdgesGraph<>();
     }
 
+    /**
+     * Tests the addition of vertices to the graph.
+     */
     @Test
     public void testAddVertex() {
         Graph<String> graph = emptyInstance();
+        
+        // Adding a vertex "A"
         assertTrue(graph.add("A"));
         assertTrue(graph.vertices().contains("A"));
 
@@ -34,13 +37,18 @@ public class ConcreteEdgesGraphTest extends GraphInstanceTest {
         assertTrue(graph.add("B"));
         assertTrue(graph.vertices().contains("B"));
 
-        // Adding duplicate vertex (should not be allowed)
+        // Adding a duplicate vertex (should not be allowed)
         assertFalse(graph.add("A"));
     }
 
+    /**
+     * Tests the addition and modification of edges in the graph.
+     */
     @Test
     public void testAddEdge() {
         Graph<String> graph = emptyInstance();
+
+        // Adding an edge from "A" to "B" with weight 1
         assertEquals(0, graph.set("A", "B", 1));
         assertTrue(graph.vertices().contains("A"));
         assertTrue(graph.vertices().contains("B"));
@@ -63,9 +71,14 @@ public class ConcreteEdgesGraphTest extends GraphInstanceTest {
         assertTrue(graph.vertices().contains("E"));
     }
 
+    /**
+     * Tests the removal of vertices from the graph.
+     */
     @Test
     public void testRemoveVertex() {
         Graph<String> graph = emptyInstance();
+
+        // Adding and then removing a vertex "A"
         graph.add("A");
         assertTrue(graph.remove("A"));
         assertFalse(graph.vertices().contains("A"));
@@ -80,12 +93,17 @@ public class ConcreteEdgesGraphTest extends GraphInstanceTest {
         assertFalse(graph.remove("D"));
     }
 
-
+    /**
+     * Tests the string representation of the graph.
+     */
     @Test
     public void testStringRepresentation() {
         Graph<String> graph = emptyInstance();
+
+        // Empty graph should have a string representation "Empty Graph"
         assertEquals("Empty Graph", graph.toString());
 
+        // Adding edges and testing the string representation
         graph.set("A", "B", 1);
         graph.set("C", "A", 2);
 
@@ -93,4 +111,3 @@ public class ConcreteEdgesGraphTest extends GraphInstanceTest {
         assertEquals(expected, graph.toString());
     }
 }
-
