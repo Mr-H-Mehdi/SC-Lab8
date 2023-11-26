@@ -18,12 +18,13 @@ public class GraphPoetTest {
 
     private GraphPoet poet;
 
+ 
     @Before
     public void setUp() throws IOException {
-        // You should replace "path/to/corpus.txt" with the actual path to your corpus file.
-        File corpusFile = new File("test/path/seven-words.txt");
+        File corpusFile = new File("test/resources/seven-words.txt");
         poet = new GraphPoet(corpusFile);
     }
+
 
     @Test(expected = IOException.class)
     public void testInvalidCorpusFile() throws IOException {
